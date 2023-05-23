@@ -114,11 +114,3 @@ export function wTwainDlg(wTwainService, WEvent) {
   }
 }
 ```
-
-## Component Diagram
-![Component Diagram](./../../../../assets/framework/w-image/docs/wImageDiagram.png)
-
-### Component Diagram XML
-To create the diagram was used the online plataform https://www.draw.io/. <br>
-
-- <a href="https://github.com/philips-emr/tasy-framework/blob/dev/packages/framework/src/assets/framework/w-image/docs/wImageDiagram.xml" target="_blank">Component Diagram XML</a>
