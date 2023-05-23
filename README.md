@@ -1,20 +1,13 @@
-# Image
-The Image component is a internal component used only by framework to abstract logical and business rules.
-This component is responsible show and select a image.
+# Iframe
+This component creates an Iframe, to be rendered inside the system screen.
 
 - [Event Listeners](#Event-Listeners)
 - [Handler Methods](#Handler-Methods)
-- <a href="https://github.com/philips-emr/tasy-framework/tree/dev/packages/framework-demo/src/main/components/w-image" target="_blank">Demo Link</a>
 - [Component Diagram](#component-diagram)
 
 ## Event Listeners
 - [onLoad](#onLoad)
 - [onDestroy](#onDestroy)
-- [onSubmit](#onSubmit)
-- [onRightClick](#onRightClick)
-- [onBlur](#onBlur)
-- [onChange](#onChange)
-- [onReady](#onReady)
 
 ### onLoad
 ----
@@ -32,7 +25,7 @@ It only can be listen by the HTML creator, see on exemple section.
 **HTML File:**
 ```html
 <div>
-    <tasy-wimage w-onload="onload($handler)"></tasy-wimage>
+    <tasy-wiframe w-onload="onload($handler)"></tasy-wiframe>
 </div>
 ```
 **JavaScript File:**
@@ -42,10 +35,10 @@ export function wTwainDlg(wTwainService, WEvent) {
 
   function linkFunc(scope) {
 
-    scope.onload = function (wimageHandler) {
-      scope.wimageHandler = wimageHandler;
-      scope.wimageHandler.setButtonVisible(false);
-      scope.wimageHandler.attributeInfo.setReadOnly(true);
+    scope.onload = function (wiframeHandler) {
+      scope.wiframeHandler = wiframeHandler;
+      scope.wiframeHandler.setButtonVisible(false);
+      scope.wiframeHandler.attributeInfo.setReadOnly(true);
     }
 
   }
