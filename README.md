@@ -84,7 +84,7 @@ this method is used to perform iframe component activation.
 
 #### :bookmark_tabs: Parameters
 **src:** _(String)_ Set the specific url.<br>
-**sandbox:** _(Enum)_ Set the sandbox type.<br>
+**sandbox:** _(Enum)_ Set the sandbox type.<br><br>
 **Sandbox Types:**<br> 
   DOWNLOADS: 'allow-downloads',<br>
   ACTIVATION: 'allow-downloads-without-user-activation',<br>
