@@ -25,7 +25,7 @@ It only can be listen by the HTML creator, see on exemple section.
 **HTML File:**
 ```html
 <div>
-    <tasy-wiframe w-onload="onload($handler)"></tasy-wiframe>
+    <w-iframe w-onload="onload($handler)"></w-iframe>
 </div>
 ```
 **JavaScript File:**
@@ -37,9 +37,7 @@ export function wTwainDlg(wTwainService, WEvent) {
 
     scope.onload = function (wiframeHandler) {
       scope.wiframeHandler = wiframeHandler;
-      scope.wiframeHandler.attributeInfo.setReadOnly(true);
     }
-
   }
 }
 ```
@@ -60,7 +58,7 @@ It only can be listen by the HTML creator, see on exemple section.
 **HTML File:**
 ```html
 <div>
-    <tasy-wiframe w-ondestroy="onDestroy($handler)"></tasy-wiframe>
+    <w-iframe w-ondestroy="onDestroy($handler)"></w-iframe>
 </div>
 ```
 **Javascript File:**
@@ -71,23 +69,38 @@ export function wTwainDlg(wTwainService, WEvent) {
   function linkFunc(scope) {
 
     scope.onDestroy = () => {
-        // call data to be destroyed
-    };
+        // call data to be destroyed
+    };
   }
 }
 ```
 ## Handler Methods
-- [onActivate](#onActivate)
+- [activate](#activate)
 
-### onActivate
+### activate
 ----
 #### :page_with_curl: Description
-this method is used to activate the iframe component.
+this method is used to perform iframe component activation.
 
 #### :bookmark_tabs: Parameters
-**iframe:**
-_(String)_ src -  Set the specific url.
-_(Enum)_ sandbox -  Set the specific sandbox type.
+**src:** _(String)_ Set the specific url.
+**sandbox:** _(Enum)_ Set the sandbox type.
+**Sandbox Types:** 
+  DOWNLOADS: 'allow-downloads',
+  ACTIVATION: 'allow-downloads-without-user-activation',
+  FORMS: 'allow-forms',
+  MODALS: 'allow-modals',
+  ORIENTATION: 'allow-orientation-lock',
+  POINTER: 'allow-pointer-lock',
+  POPUPS: 'allow-popups',
+  POPUPSCAPE: 'allow-popups-to-escape-sandbox',
+  NAVIGATION: 'allow-top-navigation',
+  STORAGE: 'allow-storage-access-by-user-activation',
+  SCRIPTS: 'allow-scripts',
+  ORIGIN: 'allow-same-origin',
+  PRESENTATION: 'allow-presentation',
+  PROTOCOLS: 'allow-top-navigation-to-custom-protocols',
+  TOPNAVIGATION: 'allow-top-navigation-by-user-activation',
 
 #### :leftwards_arrow_with_hook: Return
 It return a object **Promise**<br>
@@ -96,7 +109,7 @@ It return a object **Promise**<br>
 **HTML File:**
 ```html
 <div>
-    <tasy-wiframe w-onblur="onActivate($handler)"></tasy-wiframe>
+    <w-iframe w-onblur="activate($handler)"></w-iframe>
 </div>
 ```
 
@@ -107,8 +120,8 @@ export function wTwainDlg(wTwainService, WEvent) {
 
   function linkFunc(scope) {
 
-    scope.onActivate= function (handler) {
-      handler.onActivate("https://test-teleconsultation-manager.sa1.hsdp.io/login", sandbox);
+    scope.activate= function (handler) {
+      handler.activate("https://test-teleconsultation-manager.sa1.hsdp.io/login", sandbox);
     }
   }
 }
