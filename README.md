@@ -37,7 +37,6 @@ export function wTwainDlg(wTwainService, WEvent) {
 
     scope.onload = function (wiframeHandler) {
       scope.wiframeHandler = wiframeHandler;
-      scope.wiframeHandler.setButtonVisible(false);
       scope.wiframeHandler.attributeInfo.setReadOnly(true);
     }
 
@@ -72,10 +71,8 @@ export function wTwainDlg(wTwainService, WEvent) {
   function linkFunc(scope) {
 
     scope.onDestroy = () => {
-        delete scope.iframeSource;
-        delete scope.wiframeHandler;
-    };
-
+        // call data to be destroyed
+    };
   }
 }
 ```
@@ -85,10 +82,12 @@ export function wTwainDlg(wTwainService, WEvent) {
 ### onActivate
 ----
 #### :page_with_curl: Description
-This method is used to add the url and the sandbox inside the iframe.
+this method is used to activate the iframe component.
 
 #### :bookmark_tabs: Parameters
-**iframe:** _(File)_  Set the specific url and sandbox.
+**iframe:**
+_(String)_ src -  Set the specific url.
+_(Enum)_ sandbox -  Set the specific sandbox type.
 
 #### :leftwards_arrow_with_hook: Return
 It return a object **Promise**<br>
