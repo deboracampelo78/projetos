@@ -83,26 +83,24 @@ export function wTwainDlg(wTwainService, WEvent) {
 this method is used to perform iframe component activation.
 
 #### :bookmark_tabs: Parameters
-**src:** _(String)_ Set the specific url.
-**sandbox:** _(Enum)_ Set the sandbox type.
+**src:** _(String)_ Set the specific url.<br>
+**sandbox:** _(Enum)_ Set the sandbox type.<br>
 **Sandbox Types:** 
-  DOWNLOADS: 'allow-downloads',
-  ACTIVATION: 'allow-downloads-without-user-activation',
-  FORMS: 'allow-forms',
+  DOWNLOADS: 'allow-downloads',<br>
+  ACTIVATION: 'allow-downloads-without-user-activation',<br>
+  FORMS: 'allow-forms',<br>
   MODALS: 'allow-modals',
-  ORIENTATION: 'allow-orientation-lock',
-  POINTER: 'allow-pointer-lock',
-  POPUPS: 'allow-popups',
-  POPUPSCAPE: 'allow-popups-to-escape-sandbox',
-  NAVIGATION: 'allow-top-navigation',
-  STORAGE: 'allow-storage-access-by-user-activation',
-  SCRIPTS: 'allow-scripts',
-  ORIGIN: 'allow-same-origin',
-  PRESENTATION: 'allow-presentation',
-  PROTOCOLS: 'allow-top-navigation-to-custom-protocols',
-  TOPNAVIGATION: 'allow-top-navigation-by-user-activation',
-
-#### :leftwards_arrow_with_hook: Return
+  ORIENTATION: 'allow-orientation-lock',<br>
+  POINTER: 'allow-pointer-lock',<br>
+  POPUPS: 'allow-popups',<br>
+  POPUPSCAPE: 'allow-popups-to-escape-sandbox',<br>
+  NAVIGATION: 'allow-top-navigation',<br>
+  STORAGE: 'allow-storage-access-by-user-activation',<br>
+  SCRIPTS: 'allow-scripts',<br>
+  ORIGIN: 'allow-same-origin',<br>
+  PRESENTATION: 'allow-presentation',<br>
+  PROTOCOLS: 'allow-top-navigation-to-custom-protocols',<br>
+  TOPNAVIGATION: 'allow-top-navigation-by-user-activation',<br><br>
 It return a object **Promise**<br>
 
 #### :pencil2: Example
