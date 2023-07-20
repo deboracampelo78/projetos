@@ -388,25 +388,12 @@ export default class MyChart extends WChart  {
 }
 ```
 
-### setYAxisMinValue - (This method is currently unused)
+### <s>setYAxisMinValue</s> - (This method is currently unused)
 ----
 #### :page_with_curl: Description
-Set a minimum value to the y axis in a chart<br>
-
-#### :bookmark_tabs: Parameters
-**yAxisMaxValue:** _(number)_ minimum to the y axis to be used in the chart <br>
-
-#### :leftwards_arrow_with_hook: Return
-Not available. <br>
-
-#### :pencil2: Example
-```javascript
-@Controller({ domain: 'atepac/AtePacAA', code: 123456 })
-export default class MyChart extends WChart  {
-  onLoad() {
-    this.handler.setYAxisMinValue(0);
-  }
-}
+This method is currently unusedt<br>
+You can use this method for set the minimum value at the axis
+[setRangeAxes](#setRangeAxes)
 ```
 
 ### getYAxisMinValue
