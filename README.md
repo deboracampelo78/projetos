@@ -54,25 +54,19 @@
 
 ## Componentes
 
-Explore os componentes disponíveis no projeto:
+Documentação dos componentes disponíveis no projeto:
 
 - **[Processes](src/app/components/Processes/README.md)**  
-  Documentação do componente `Processes`.
 
 - **[SideBarMenu](src/app/components/SidebarMenu/README.md)**  
-  Documentação do componente `SideBarMenu`.
 
 - **[Tabs](src/app/components/Tabs/README.md)**  
-  Documentação do componente `Tabs`.
 
 - **[ConfigLoader](src/app/components/ConfigLoader/README.md)**  
-  Documentação do componente `ConfigLoader`.
 
 - **[CustomModal](src/app/components/CustomModal/README.md)**  
-  Documentação do componente `CustomModal`.
 
 - **[Message](src/app/components/ErrorsAlertsInfo/README.md)**  
-  Documentação do componente `Message`.
 
 ---
 
