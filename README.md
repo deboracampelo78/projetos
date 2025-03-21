@@ -1,120 +1,83 @@
-# 📚 WesSidebarMenu Component
+# Setup do Ambiente
 
-O `WesSidebarMenu` é um componente React responsável por renderizar dinamicamente o menu lateral da aplicação com base nos dados retornados do backend. Ele integra-se com os contextos de autenticação, navegação e variáveis globais para controlar estados, navegação e breadcrumbs.
+### Passo a Passo
 
----
+1. **Remover o Node.js v10.24.1**  
+    Certifique-se de desinstalar a versão antiga do Node.js.
 
-## ✨ Funcionalidades
+2. **Instalar o NVM-Windows**  
+    Baixe e instale o [NVM-Windows](https://github.com/coreybutler/nvm-windows). Durante a instalação, clique em "Next" em todas as etapas.
 
-- Geração dinâmica de menus e submenus via API.
-- Suporte à navegação e execução de comandos.
-- Atualização automática de breadcrumbs e estado da página.
-- Acessibilidade com suporte a teclado (`Enter`, `ArrowUp`, `ArrowDown`).
-- Suporte a comandos específicos enviados via API (`COMANDO` e `VISAO`).
+3. **Habilitar o controle de NPM/Node pelo NVM**  
+    Execute o comando:  
+    ```bash
+    nvm on
+    ```
 
----
+4. **Instalar a versão 10.24.1 do Node.js**  
+    Abra o PowerShell e execute:  
+    ```bash
+    nvm install 10.24.1
+    ```
 
-## 🚀 Uso
+5. **Instalar a versão mínima necessária para a POC (18.19.0)**  
+    Execute:  
+    ```bash
+    nvm install 18.19.0
+    ```
 
-### 1. **Importação do componente**
+6. **Habilitar a versão desejada do Node.js**  
+    Para usar a versão 18.19.0, execute:  
+    ```bash
+    nvm use 18.19.0
+    ```
 
-```tsx
-import { WesSidebarMenu } from "@/components/SideBarMenu/WesSidebarMenu";
-```
+7. **Instalar o Yarn**  
+    Instale o Yarn globalmente com o comando:  
+    ```bash
+    npm i -g yarn
+    ```
 
-### 2. **Uso no layout**
+8. **Instalar as dependências do projeto**  
+    Na raiz do diretório do projeto, execute:  
+    ```bash
+    yarn
+    ```
 
-```tsx
-<WesSidebarMenu menuId="ID_DO_MENU" />
-```
-
----
-
-## ⚙️ Props
-
-| Propriedade | Tipo     | Descrição                          |
-|-------------|----------|------------------------------------|
-| `menuId`    | `string` | ID do menu a ser carregado via API |
-
----
-
-## 🧠 Como Funciona
-
-1. **Carregamento do menu**
-   - Ao montar, o componente chama `wesApi.getMenu(menuId)` com o token de autenticação.
-   - O menu é armazenado no estado local e renderizado dinamicamente.
-
-2. **Renderização**
-   - Usa os componentes `SidebarMenuItem` e `SidebarMenuItemWithSub` para renderizar os itens.
-   - Suporte a submenus aninhados.
-
-3. **Navegação**
-   - Clique ou `Enter` em um item executa a navegação.
-   - Itens com `COMANDO` disparam chamadas para `wesApi.postMenuCommand`.
-
-4. **Acessibilidade**
-   - Teclas `ArrowUp` e `ArrowDown` movem o foco entre os itens.
-   - `Enter` ativa o item focado.
+9. **Executar o projeto**  
+    Inicie o projeto com o comando:  
+    ```bash
+    yarn dev
+    ```
 
 ---
 
-## 📁 Estrutura de Arquivos
+## Componentes
 
-```
-📦 components/SideBarMenu/
- ┣ 📜 WesSidebarMenu.tsx
- ┣ 📜 SideBarMenu.styles.ts
-```
+Explore os componentes disponíveis no projeto:
 
----
+- **[Processes](src/app/components/Processes/README.md)**  
+  Documentação do componente `Processes`.
 
-## 🔧 Integrações
+- **[SideBarMenu](src/app/components/SidebarMenu/README.md)**  
+  Documentação do componente `SideBarMenu`.
 
-- `AuthContext`: Para obter o token de acesso.
-- `VariaveisGlobaisContext`: Para manipular estado e breadcrumbs.
-- `WesNavigationContext`: Para navegar entre páginas.
-- `wesApi`: Para obter menus e executar comandos.
-- `useGetTasks`: Para controle de tarefas assíncronas.
+- **[Tabs](src/app/components/Tabs/README.md)**  
+  Documentação do componente `Tabs`.
 
----
+- **[ConfigLoader](src/app/components/ConfigLoader/README.md)**  
+  Documentação do componente `ConfigLoader`.
 
-## 🔌 Dependências
+- **[CustomModal](src/app/components/CustomModal/README.md)**  
+  Documentação do componente `CustomModal`.
 
-- `react-router-dom`
-- `styled-components`
-- `@/app/context/AuthContext`
-- `@/app/context/WesNavigationContext`
-- `@/app/context/hooks/VariaveisGlobaisContext`
-- `@/app/modules/wes-replacement/apis/WesBackApi`
+- **[Message](src/app/components/ErrorsAlertsInfo/README.md)**  
+  Documentação do componente `Message`.
 
 ---
 
-## 📝 Observações
+## Code Review
 
-- O componente espera que a API de menu retorne dados no formato esperado (`MenuModel`).
-- Itens do menu com a propriedade `COMANDO` são tratados como ações executáveis, enquanto os que possuem `PAGINA` são tratados como links de navegação.
-- É possível estender o componente para adicionar animações, ícones personalizados ou controle de permissões.
+Confira processos e boas práticas para um code review completo no [Guia do Code Review](/GuiaCodeReview.md).
 
 ---
-
-## ✅ Exemplo de Item de Menu
-
-```json
-{
-  "id": "menu1",
-  "name": "Relatórios",
-  "properties": {
-    "PAGINA": "relatorio-financeiro",
-    "CLASSEICONE": "bi-bar-chart"
-  },
-  "items": []
-}
-```
-
-Esse item será renderizado como um link para `/wespage/relatorio-financeiro`.
-
----
-
-## 📞 Suporte
-
-Para dúvidas ou sugestões, entre em contato com o time de desenvolvimento WES.
