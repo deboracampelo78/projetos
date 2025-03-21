@@ -1,15 +1,16 @@
-# 🧩 Tabs (ControllerTabs) Component
+# 📚 WesSidebarMenu Component
 
-O componente `Tabs` (também exportado como `ControllerTabs`) é um componente React responsável por renderizar um conjunto de abas com conteúdos dinâmicos, utilizando `react-bootstrap`.
+O `WesSidebarMenu` é um componente React responsável por renderizar dinamicamente o menu lateral da aplicação com base nos dados retornados do backend. Ele integra-se com os contextos de autenticação, navegação e variáveis globais para controlar estados, navegação e breadcrumbs.
 
 ---
 
 ## ✨ Funcionalidades
 
-- Renderização de múltiplas abas com títulos e conteúdos personalizados.
-- Usa o componente `Tabs` do `react-bootstrap`.
-- Suporte a seleção automática da primeira aba.
-- Estilização customizada via SCSS.
+- Geração dinâmica de menus e submenus via API.
+- Suporte à navegação e execução de comandos.
+- Atualização automática de breadcrumbs e estado da página.
+- Acessibilidade com suporte a teclado (`Enter`, `ArrowUp`, `ArrowDown`).
+- Suporte a comandos específicos enviados via API (`COMANDO` e `VISAO`).
 
 ---
 
@@ -18,107 +19,102 @@ O componente `Tabs` (também exportado como `ControllerTabs`) é um componente R
 ### 1. **Importação do componente**
 
 ```tsx
-import { Tabs } from "@/components/ControllerTabs/Tabs";
+import { WesSidebarMenu } from "@/components/SideBarMenu/WesSidebarMenu";
 ```
 
-### 2. **Uso básico**
+### 2. **Uso no layout**
 
 ```tsx
-<Tabs
-  id="meu-conjunto-de-abas"
-  tabList={[
-    {
-      id: "aba1",
-      title: "Primeira Aba",
-      content: <div>Conteúdo da Aba 1</div>,
-    },
-    {
-      id: "aba2",
-      title: "Segunda Aba",
-      content: <div>Conteúdo da Aba 2</div>,
-    },
-  ]}
-/>
+<WesSidebarMenu menuId="ID_DO_MENU" />
 ```
 
 ---
 
-## 📦 Props
+## ⚙️ Props
 
-| Propriedade | Tipo        | Descrição                                       |
-|-------------|-------------|-------------------------------------------------|
-| `id`        | `string`    | Identificador único do conjunto de abas        |
-| `tabList`   | `TabType[]` | Lista de abas a serem renderizadas             |
-
-### Estrutura de `TabType`
-
-```ts
-interface TabType {
-  id: string;
-  title: string;
-  content: JSX.Element;
-}
-```
+| Propriedade | Tipo     | Descrição                          |
+|-------------|----------|------------------------------------|
+| `menuId`    | `string` | ID do menu a ser carregado via API |
 
 ---
 
-## 🎨 Estilo
+## 🧠 Como Funciona
 
-- A classe `bg-white` é aplicada tanto nas abas quanto no conteúdo para fundo branco.
-- Padding customizado é aplicado nas abas e no conteúdo.
-- Estilos adicionais podem ser aplicados via `style.scss`.
+1. **Carregamento do menu**
+   - Ao montar, o componente chama `wesApi.getMenu(menuId)` com o token de autenticação.
+   - O menu é armazenado no estado local e renderizado dinamicamente.
+
+2. **Renderização**
+   - Usa os componentes `SidebarMenuItem` e `SidebarMenuItemWithSub` para renderizar os itens.
+   - Suporte a submenus aninhados.
+
+3. **Navegação**
+   - Clique ou `Enter` em um item executa a navegação.
+   - Itens com `COMANDO` disparam chamadas para `wesApi.postMenuCommand`.
+
+4. **Acessibilidade**
+   - Teclas `ArrowUp` e `ArrowDown` movem o foco entre os itens.
+   - `Enter` ativa o item focado.
 
 ---
 
 ## 📁 Estrutura de Arquivos
 
 ```
-📦 components/ControllerTabs/
- ┣ 📜 Tabs.tsx
- ┣ 📜 style.scss
+📦 components/SideBarMenu/
+ ┣ 📜 WesSidebarMenu.tsx
+ ┣ 📜 SideBarMenu.styles.ts
 ```
 
 ---
 
-## 📌 Dependências
+## 🔧 Integrações
 
-- `react`
-- `react-bootstrap`
-- `bootstrap` (CSS base)
-- Estilos customizados (`style.scss`)
+- `AuthContext`: Para obter o token de acesso.
+- `VariaveisGlobaisContext`: Para manipular estado e breadcrumbs.
+- `WesNavigationContext`: Para navegar entre páginas.
+- `wesApi`: Para obter menus e executar comandos.
+- `useGetTasks`: Para controle de tarefas assíncronas.
+
+---
+
+## 🔌 Dependências
+
+- `react-router-dom`
+- `styled-components`
+- `@/app/context/AuthContext`
+- `@/app/context/WesNavigationContext`
+- `@/app/context/hooks/VariaveisGlobaisContext`
+- `@/app/modules/wes-replacement/apis/WesBackApi`
 
 ---
 
 ## 📝 Observações
 
-- O componente não possui controle interno de estado ativo além da aba padrão.
-- O `transition={false}` garante que não haja animações entre abas.
-- Pode ser facilmente estendido para incluir ícones ou fechar abas dinamicamente.
+- O componente espera que a API de menu retorne dados no formato esperado (`MenuModel`).
+- Itens do menu com a propriedade `COMANDO` são tratados como ações executáveis, enquanto os que possuem `PAGINA` são tratados como links de navegação.
+- É possível estender o componente para adicionar animações, ícones personalizados ou controle de permissões.
 
 ---
 
-## ✅ Exemplo Visual
+## ✅ Exemplo de Item de Menu
 
-```tsx
-<Tabs
-  id="exemplo-tabs"
-  tabList={[
-    {
-      id: "info",
-      title: "Informações",
-      content: <InformacoesComponent />,
-    },
-    {
-      id: "config",
-      title: "Configurações",
-      content: <ConfiguracoesComponent />,
-    },
-  ]}
-/>
+```json
+{
+  "id": "menu1",
+  "name": "Relatórios",
+  "properties": {
+    "PAGINA": "relatorio-financeiro",
+    "CLASSEICONE": "bi-bar-chart"
+  },
+  "items": []
+}
 ```
+
+Esse item será renderizado como um link para `/wespage/relatorio-financeiro`.
 
 ---
 
 ## 📞 Suporte
 
-Para sugestões, melhorias ou bugs, entre em contato com o time de UI/UX ou frontend.
+Para dúvidas ou sugestões, entre em contato com o time de desenvolvimento WES.
